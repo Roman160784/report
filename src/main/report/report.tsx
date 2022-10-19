@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { DataInput } from '../../common/input/dataInput';
+import { EditableSpan } from '../../common/input/editableSpan';
 import { TransformersData } from '../transformersData/transformersData';
 import classes from './report.module.css'
 
@@ -10,6 +11,48 @@ export const Report = () => {
         console.log(data);
         
     }
+
+    const reportNumberHandler = (reportNumber: string) => {
+        console.log(reportNumber); 
+    }
+
+    const custumerHandler = (custumer: string) => {
+        console.log(custumer); 
+    }
+
+    const receiptHandler = (receipt: string) => {
+        console.log(receipt); 
+    }
+
+    const dateHandler = (date: string) => {
+        console.log(date); 
+    }
+
+    const voltageHandler = (volt: string) => {
+        console.log(volt); 
+    }
+
+    const hzHandler = (hz: string) => {
+        console.log(hz); 
+    }
+
+    const temperatureHandler = (temperature: string) => {
+        console.log(temperature); 
+    }
+
+    const wetHandler = (wet: string) => {
+        console.log(wet); 
+    }
+
+    const kPaHandler = (kPa: string) => {
+        console.log(kPa); 
+    }
+
+    const standatrsHandler = (standatrs: string) => {
+        console.log(standatrs); 
+    }
+
+    
 
 
     return (
@@ -26,24 +69,27 @@ export const Report = () => {
                 ул. Лепешинского, 1, г. Гомель, 246015, тел. 26-33-31
             </div>
             <div className={classes.reportNumber}>
-                Протокол № 1111/10/2160 поверки трансформаторов класса 0,5S
+                Протокол № <EditableSpan title={'111'} changeTitle={reportNumberHandler}/>/10/2160 поверки трансформаторов класса 0,5S
                 </div>
                 <div>
-                   Наименование организации заказчика 
+                   Наименование организации заказчика: <EditableSpan title={'ЦСМС'} changeTitle={custumerHandler}/>
                 </div>
                 <div>
-                    номер квитанции-счёт 2160-
+                    номер квитанции-счёт: 2160-<EditableSpan title={'123'} changeTitle={receiptHandler}/>
                 </div>
                 <div>
-                    Дата проведения поверки начало/окончание
+                    Дата проведения поверки начало/окончание: <EditableSpan title={'11.11.2021'} changeTitle={dateHandler}/>
                 </div>
             <div>
-            Условия проведения поверки: напряжение питающей сети, В - 228; частота питающей сети, ГЦ - 50,0;   
+            Условия проведения поверки: напряжение питающей сети, В - <EditableSpan title={'228.0'} changeTitle={voltageHandler}/>; 
+            частота питающей сети, ГЦ - <EditableSpan title={'50.0'} changeTitle={hzHandler}/>;   
             <br />
-            температура окружающей среды, С - 24; относительная влажность воздуха, % - 32, атмосферное давление, кПа - 100,0
+            температура окружающей среды, С - <EditableSpan title={'20.0'} changeTitle={temperatureHandler}/>;
+             относительная влажность воздуха, % - <EditableSpan title={'51.0'} changeTitle={wetHandler}/>,
+              атмосферное давление, кПа - <EditableSpan title={'100.0'} changeTitle={kPaHandler}/>
             </div>
             <div>
-                Средства поверки
+                Средства поверки: <EditableSpan title={'YO-YO'} changeTitle={standatrsHandler}/>
             </div>
             <div>
                 ТНПА: ГОСТ 8.217-2003 "Тртансформаторы тока. Методика поверки"
@@ -53,6 +99,7 @@ export const Report = () => {
            Данные <DataInput setData={ seveData}   /> 
             <br />
             </div>
+            <br />
             <div>
                 <TransformersData/>
             </div>

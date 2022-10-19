@@ -29,14 +29,14 @@ export const EditableSpan = ({ title, changeTitle, ...props }: EditableSpanProps
     }
 
     return (
-        <div>
+        <>
             {mode
                 ? <input type="text" value={value} onChange={onChangeHandler}
                          onBlur={onBlurHandler} autoFocus  className={classes.inputName}/>
                 : <span onDoubleClick={() => {setMode(true)}}>{title}</span>}
             {error && <div className={classes.error}>{error}</div>}
-            <div className={classes.inputClick}>Кликни дважды для изменения названия</div>
-        </div>
+            {/* <div className={classes.inputClick}>Кликни дважды для изменения названия</div> */}
+        </>
 
     )
 
