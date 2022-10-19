@@ -1,0 +1,22 @@
+.number{
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+}
+.type{
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+}
+
+.borderT{
+    border: 2px solid black;
+}
+
+.sizeData{
+    padding-left: 2.7px;
+}
+
+.size{
+    text-align: center;
+}

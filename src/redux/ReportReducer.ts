@@ -9,6 +9,8 @@ export type transformerType = {
     load: string
     current: string
     data: number[]
+    result: string
+    stigma: number
 }
 
 export type RepotReducerType = {
