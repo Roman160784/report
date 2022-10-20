@@ -56,6 +56,9 @@ export const Transformer = () => {
         console.log(stigma);
     }
 
+
+
+    
     const infelicityOHandler = (infelicity: number) => {
         console.log(infelicity);
     }
@@ -63,6 +66,42 @@ export const Transformer = () => {
     const infelicityFHandler = (infelicity: number) => {
         console.log(infelicity);
     }
+
+    const infelicitySHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+
+    const infelicityTHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+
+    const infelicityFourHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+
+    const infelicityFiveHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+
+    const infelicitySixHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+    const infelicitySevenHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+    const infelicityEightHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+    const infelicityNineHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+    const infelicityTenHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+    const infelicityElevenHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+    
 
 
 
@@ -83,18 +122,18 @@ export const Transformer = () => {
                             <td><EditableSpan title={tr.visual} changeTitle={visualHandler} /></td>
 
                             <td >
-                                <td className={classes.sizeData}>{tr.infelicity[0].toFixed(2)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[1].toFixed(1)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[2].toFixed(2)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[3].toFixed(1)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[4].toFixed(2)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[5].toFixed(1)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[6].toFixed(2)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[7].toFixed(1)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[8].toFixed(2)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[9].toFixed(1)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[10].toFixed(2)}</td>
-                                <td className={classes.sizeData}>{tr.infelicity[11].toFixed(1)}</td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[0].toFixed(2)} changeTitle={infelicityOHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[1].toFixed(1)} changeTitle={infelicityFHandler}/></td>
+                                <td className={classes.sizeData}> <EditableSpanNumbers title={+tr.infelicity[2].toFixed(2)} changeTitle={infelicitySHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[3].toFixed(1)} changeTitle={infelicityTHandler }/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[4].toFixed(2)} changeTitle={ infelicityFourHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[5].toFixed(1)} changeTitle={infelicityFiveHandler }/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[6].toFixed(2)} changeTitle={infelicitySixHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[7].toFixed(1)} changeTitle={infelicitySevenHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[8].toFixed(2)} changeTitle={infelicityEightHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[9].toFixed(1)} changeTitle={infelicityNineHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[10].toFixed(2)} changeTitle={infelicityTenHandler}/></td>
+                                <td className={classes.sizeData}><EditableSpanNumbers title={+tr.infelicity[11].toFixed(1)} changeTitle={infelicityElevenHandler}/></td>
 
                             </td>
                             <td>{(tr.visual === infelicity.visual) 

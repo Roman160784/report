@@ -1,13 +1,18 @@
 
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { DataInput } from '../../common/input/dataInput';
 import { EditableSpan } from '../../common/input/editableSpan';
+import { addTransformerAC } from '../../redux/ReportReducer';
 import { TransformersData } from '../transformersData/transformersData';
 import classes from './report.module.css'
 
 export const Report = () => {
    
+    const dispatch = useDispatch()
+
     const seveData = (data: number[]) => {
+        dispatch(addTransformerAC(data))
         console.log(data); 
     }
 
