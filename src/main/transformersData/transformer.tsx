@@ -1,0 +1,88 @@
+import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
+import { useSelector } from 'react-redux';
+import { EditableSpan } from '../../common/input/editableSpan';
+import { transformerType } from '../../redux/ReportReducer';
+import { RootReducerType } from '../../redux/store';
+import classes from './transformerData.module.css'
+
+enum infelicity {
+    oneM = -1.5,
+    oneP = 1.5,
+    oneMCorner = -90,
+    onePCorner = 90,
+    fiveM = -0.75,
+    fiveP = 0.75,
+    fiveMCorner = -45,
+    fivePCorner = 45,
+    otherM = -0.5,
+    otherP = 0.5,
+    otherMCorner = -30,
+    otherPCorner = 30,
+}
+
+export const Transformer = () => {
+
+     const transformer = useSelector<RootReducerType, transformerType[]>(state => state.report)
+
+    const typeHandler = (typeTr: string) => {
+        console.log(typeTr); 
+    }
+
+    const serialNumberHandler = (serialNumber: string) => {
+        console.log(serialNumber); 
+    }
+
+    const coefficientHandler = (coefficient: string) => {
+        console.log(coefficient); 
+    }
+
+    const clasTHandler = (clas: string) => {
+        console.log(clas); 
+    }
+
+    const loadHandler = (load: string) => {
+        console.log(load); 
+    }
+
+    const visualHandler = (visual: string) => {
+        console.log(visual); 
+    }
+
+
+    return (
+        <>
+        {
+            transformer.map(tr => 
+                <tr className={classes.size}>
+                <td>{tr.count}</td>
+                <td><EditableSpan title={tr.type} changeTitle={typeHandler}/></td>
+                <td><EditableSpan title={tr.number} changeTitle={serialNumberHandler}/></td>
+                <td><EditableSpan title={tr.current} changeTitle={coefficientHandler}/></td>
+                <td><EditableSpan title={tr.class} changeTitle={clasTHandler}/></td>
+                <td><EditableSpan title={tr.load} changeTitle={loadHandler}/></td>
+                <td><EditableSpan title={tr.visual} changeTitle={visualHandler}/></td>
+                <td >
+                    <td className={classes.sizeData}>{tr.infelicity[0]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[1]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[2]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[3]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[4]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[5]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[6]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[7]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[8]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[9]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[10]}</td>
+                    <td className={classes.sizeData}>{tr.infelicity[11]}</td>
+
+                </td>
+                <td>{tr.result}</td>
+                <td>15 {tr.stigma}</td>
+            </tr>
+                
+                )
+        }
+         
+        </>
+    )
+}

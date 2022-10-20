@@ -8,8 +8,7 @@ import classes from './report.module.css'
 export const Report = () => {
    
     const seveData = (data: number[]) => {
-        console.log(data);
-        
+        console.log(data); 
     }
 
     const reportNumberHandler = (reportNumber: string) => {
@@ -52,9 +51,11 @@ export const Report = () => {
         console.log(standatrs); 
     }
 
+    const userNameHandler = (userName: string) => {
+        console.log(userName); 
+    }
+
     
-
-
     return (
         <div>
             <div>
@@ -101,9 +102,11 @@ export const Report = () => {
             </div>
             <br />
             <div>
-                <TransformersData/>
+                <TransformersData/> 
             </div>
-           
+           <div>
+            Государственный поверитель ______________________ <EditableSpan title={'YO-YO'} changeTitle={userNameHandler}/>
+           </div>
             
             
         </div>

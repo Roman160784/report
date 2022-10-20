@@ -9,7 +9,7 @@ export type HeaderReducerType = {
     wet: string
     kPa: string
     standarts: string
-    
+    user: string
 }
 
 const initialStateHeader: HeaderReducerType = {
@@ -22,7 +22,8 @@ const initialStateHeader: HeaderReducerType = {
     temperature: '20.4',
     wet: '53.0',
     kPa: '100',
-    standarts: 'YO-YO'
+    standarts: 'YO-YO',
+    user: 'Инженер I категории Р. С. Матвеенко'
 
 }
 
