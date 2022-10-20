@@ -1,4 +1,4 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, legacy_createStore as createStore } from "redux";
 import { HeaderReducer } from "./HeaderReducer";
 import { RepotReducer } from "./ReportReducer";
 

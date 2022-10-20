@@ -2,30 +2,27 @@ import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
 import classes from './editableSpan.module.css'
 
 type EditableSpanPropsType = {
-    title: string
-    changeTitle: (title: string) => void
+    title: number
+    changeTitle: (title: number) => void
 }
 
-export const EditableSpan = ({ title, changeTitle, ...props }: EditableSpanPropsType) => {
+export const EditableSpanNumbers = ({ title, changeTitle, ...props }: EditableSpanPropsType) => {
 
    
 
-    const [value, setValue] = useState<string>(title)
+    const [value, setValue] = useState<number>(title)
     const [mode, setMode] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value)
+        setValue(+e.currentTarget.value)
         setError(null)
        
     }
 
     const onBlurHandler = () => {
-         if (value.trim() !== '') {
             changeTitle(value)
-            setValue('')
             setMode(false)
-        }
     }
 
     return (

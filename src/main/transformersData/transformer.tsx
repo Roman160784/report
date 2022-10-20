@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { EditableSpan } from '../../common/input/editableSpan';
+import { EditableSpanNumbers } from '../../common/input/editableSpanNumbers';
 import { transformerType } from '../../redux/ReportReducer';
 import { RootReducerType } from '../../redux/store';
 import classes from './transformerData.module.css'
@@ -18,71 +19,108 @@ enum infelicity {
     otherP = 0.5,
     otherMCorner = -30,
     otherPCorner = 30,
+    visual = 'Соответствует',
+    good = 'Годен',
+    bad = 'Не годен'
 }
 
 export const Transformer = () => {
 
-     const transformer = useSelector<RootReducerType, transformerType[]>(state => state.report)
+    const transformer = useSelector<RootReducerType, transformerType[]>(state => state.report)
 
     const typeHandler = (typeTr: string) => {
-        console.log(typeTr); 
+        console.log(typeTr);
     }
 
     const serialNumberHandler = (serialNumber: string) => {
-        console.log(serialNumber); 
+        console.log(serialNumber);
     }
 
     const coefficientHandler = (coefficient: string) => {
-        console.log(coefficient); 
+        console.log(coefficient);
     }
 
     const clasTHandler = (clas: string) => {
-        console.log(clas); 
+        console.log(clas);
     }
 
     const loadHandler = (load: string) => {
-        console.log(load); 
+        console.log(load);
     }
 
     const visualHandler = (visual: string) => {
-        console.log(visual); 
+        console.log(visual);
     }
+
+    const stigmaHandler = (stigma: number) => {
+        console.log(stigma);
+    }
+
+    const infelicityOHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+
+    const infelicityFHandler = (infelicity: number) => {
+        console.log(infelicity);
+    }
+
+
 
 
     return (
         <>
-        {
-            transformer.map(tr => 
-                <tr className={classes.size}>
-                <td>{tr.count}</td>
-                <td><EditableSpan title={tr.type} changeTitle={typeHandler}/></td>
-                <td><EditableSpan title={tr.number} changeTitle={serialNumberHandler}/></td>
-                <td><EditableSpan title={tr.current} changeTitle={coefficientHandler}/></td>
-                <td><EditableSpan title={tr.class} changeTitle={clasTHandler}/></td>
-                <td><EditableSpan title={tr.load} changeTitle={loadHandler}/></td>
-                <td><EditableSpan title={tr.visual} changeTitle={visualHandler}/></td>
-                <td >
-                    <td className={classes.sizeData}>{tr.infelicity[0]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[1]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[2]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[3]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[4]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[5]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[6]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[7]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[8]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[9]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[10]}</td>
-                    <td className={classes.sizeData}>{tr.infelicity[11]}</td>
+            {
+                transformer.map(tr => {
+                    return (
+                        <tr className={classes.size}>
+                            <td>{tr.count}</td>
 
-                </td>
-                <td>{tr.result}</td>
-                <td>15 {tr.stigma}</td>
-            </tr>
-                
+                            <td><EditableSpan title={tr.type} changeTitle={typeHandler} /></td>
+                            <td><EditableSpan title={tr.number} changeTitle={serialNumberHandler} /></td>
+                            <td><EditableSpan title={tr.current} changeTitle={coefficientHandler} /></td>
+                            <td><EditableSpan title={tr.class} changeTitle={clasTHandler} /></td>
+                            <td><EditableSpan title={tr.load} changeTitle={loadHandler} /></td>
+                            <td><EditableSpan title={tr.visual} changeTitle={visualHandler} /></td>
+
+                            <td >
+                                <td className={classes.sizeData}>{tr.infelicity[0].toFixed(2)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[1].toFixed(1)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[2].toFixed(2)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[3].toFixed(1)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[4].toFixed(2)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[5].toFixed(1)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[6].toFixed(2)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[7].toFixed(1)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[8].toFixed(2)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[9].toFixed(1)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[10].toFixed(2)}</td>
+                                <td className={classes.sizeData}>{tr.infelicity[11].toFixed(1)}</td>
+
+                            </td>
+                            <td>{(tr.visual === infelicity.visual) 
+                            && (tr.infelicity[0] >= infelicity.oneM && tr.infelicity[0] <= infelicity.oneP) 
+                            && (tr.infelicity[1] >= infelicity.oneMCorner && tr.infelicity[1] <= infelicity.onePCorner) 
+                            && (tr.infelicity[2] >= infelicity.fiveM && tr.infelicity[2] <= infelicity.fiveP) 
+                            && (tr.infelicity[3] >= infelicity.fiveMCorner && tr.infelicity[3] <= infelicity.fivePCorner) 
+                            && (tr.infelicity[4] >= infelicity.otherM && tr.infelicity[4] <= infelicity.otherP) 
+                            && (tr.infelicity[5] >= infelicity.otherMCorner && tr.infelicity[5] <= infelicity.otherPCorner) 
+                            && (tr.infelicity[6] >= infelicity.otherM && tr.infelicity[6] <= infelicity.otherP) 
+                            && (tr.infelicity[7] >= infelicity.otherMCorner && tr.infelicity[7] <= infelicity.otherPCorner) 
+                            && (tr.infelicity[8] >= infelicity.otherM && tr.infelicity[8] <= infelicity.otherP) 
+                            && (tr.infelicity[9] >= infelicity.otherMCorner && tr.infelicity[9] <= infelicity.otherPCorner) 
+                            && (tr.infelicity[10] >= infelicity.otherM && tr.infelicity[10] <= infelicity.otherP) 
+                            && (tr.infelicity[11] >= infelicity.otherMCorner && tr.infelicity[11] <= infelicity.otherPCorner) 
+                            ? infelicity.good : infelicity.bad}</td>
+                        
+                            <td>15 00  {infelicity.good ?  <EditableSpanNumbers title={tr.stigma} changeTitle={stigmaHandler} /> :  0 }</td>
+                        </tr>
+                    )
+                }
+
+
                 )
-        }
-         
+            }
+
         </>
     )
 }

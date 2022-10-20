@@ -22,7 +22,7 @@ const initialStateHeader: HeaderReducerType = {
     temperature: '20.4',
     wet: '53.0',
     kPa: '100',
-    standarts: 'YO-YO',
+    standarts: 'Трансформатор тока СА535/2 №117 кл.т 0,02; компоратор СА507 №8',
     user: 'Инженер I категории Р. С. Матвеенко'
 
 }
