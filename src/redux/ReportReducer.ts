@@ -76,6 +76,12 @@ export const RepotReducer = (state: transformerType[] = initialStateRepot, actio
         case 'REPORT/CHENGE-LOAD' : {
             return state.map(t => t.id === action.id ? {...t, load: action.load} : t)  
         }
+        case 'REPORT/VISUAL' : {
+            return state.map(t => t.id === action.id ? {...t, visual: action.visual} : t)  
+        }
+        case 'REPORT/CHENGE-STIGMA' : {
+            return state.map(t => t.id === action.id ? {...t, stigma: action.stigma} : t)  
+        }
 
         default:
             return state
@@ -83,7 +89,7 @@ export const RepotReducer = (state: transformerType[] = initialStateRepot, actio
 }
 
 export type MainActionType = setNumberACType | addTransformerACType | chengeTypeACType | chengeCoafficientACType 
-| chengeClassTACType | chengeLoadACACType
+| chengeClassTACType | chengeLoadACACType | visualACType | chengeStigmalACType
 
 export type setNumberACType = ReturnType<typeof setNumberAC>
 export type addTransformerACType = ReturnType<typeof addTransformerAC>
@@ -91,6 +97,8 @@ export type chengeTypeACType = ReturnType<typeof chengeTypeAC>
 export type chengeCoafficientACType = ReturnType<typeof chengeCoafficientAC>
 export type chengeClassTACType = ReturnType<typeof chengeClassTAC>
 export type chengeLoadACACType = ReturnType<typeof chengeLoadAC>
+export type visualACType = ReturnType<typeof visualAC>
+export type chengeStigmalACType = ReturnType<typeof chengeStigmalAC>
 
 
 export const setNumberAC = (id: string, number: string) => ({ type: 'REPORT/SET-NUMBER', id, number } as const)
@@ -99,3 +107,5 @@ export const chengeTypeAC = (id: string, types: string) => ({ type: 'REPORT/CHEN
 export const chengeCoafficientAC = (id: string, coaff: string) => ({ type: 'REPORT/CHENGE-COAFFICIENT', id, coaff } as const)
 export const chengeClassTAC = (id: string, classT: string) => ({ type: 'REPORT/CHENGE-CLASS-T', id, classT } as const)
 export const chengeLoadAC = (id: string, load: string) => ({ type: 'REPORT/CHENGE-LOAD', id, load } as const)
+export const visualAC = (id: string, visual: string) => ({ type: 'REPORT/VISUAL', id, visual } as const)
+export const chengeStigmalAC = (id: string, stigma: number) => ({ type: 'REPORT/CHENGE-STIGMA', id, stigma } as const)
