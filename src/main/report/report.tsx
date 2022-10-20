@@ -13,7 +13,6 @@ export const Report = () => {
 
     const seveData = (data: number[]) => {
         dispatch(addTransformerAC(data))
-        console.log(data); 
     }
 
     const reportNumberHandler = (reportNumber: string) => {

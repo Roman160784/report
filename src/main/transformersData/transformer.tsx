@@ -1,8 +1,9 @@
 import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { EditableSpan } from '../../common/input/editableSpan';
 import { EditableSpanNumbers } from '../../common/input/editableSpanNumbers';
-import { transformerType } from '../../redux/ReportReducer';
+import { chengeClassTAC, chengeCoafficientAC, chengeLoadAC, chengeTypeAC, setNumberAC, transformerType } from '../../redux/ReportReducer';
 import { RootReducerType } from '../../redux/store';
 import classes from './transformerData.module.css'
 
@@ -26,26 +27,28 @@ enum infelicity {
 
 export const Transformer = () => {
 
+    const dispatch = useDispatch()
+
     const transformer = useSelector<RootReducerType, transformerType[]>(state => state.report)
 
-    const typeHandler = (typeTr: string) => {
-        console.log(typeTr);
+    const typeHandler = (id: string, typeTr: string) => {
+        dispatch(chengeTypeAC(id, typeTr))
     }
 
-    const serialNumberHandler = (serialNumber: string) => {
-        console.log(serialNumber);
+    const serialNumberHandler = (id: string, serialNumber: string) => {
+        dispatch(setNumberAC(id, serialNumber));
     }
 
-    const coefficientHandler = (coefficient: string) => {
-        console.log(coefficient);
+    const coefficientHandler = (id: string, coefficient: string) => {
+        dispatch(chengeCoafficientAC(id, coefficient));
     }
 
-    const clasTHandler = (clas: string) => {
-        console.log(clas);
+    const clasTHandler = (id: string, clas: string) => {
+        dispatch(chengeClassTAC(id, clas))
     }
 
-    const loadHandler = (load: string) => {
-        console.log(load);
+    const loadHandler = (id: string, load: string) => {
+        dispatch(chengeLoadAC(id, load))
     }
 
     const visualHandler = (visual: string) => {
@@ -114,11 +117,11 @@ export const Transformer = () => {
                         <tr className={classes.size}>
                             <td>{tr.count}</td>
 
-                            <td><EditableSpan title={tr.type} changeTitle={typeHandler} /></td>
-                            <td><EditableSpan title={tr.number} changeTitle={serialNumberHandler} /></td>
-                            <td><EditableSpan title={tr.current} changeTitle={coefficientHandler} /></td>
-                            <td><EditableSpan title={tr.class} changeTitle={clasTHandler} /></td>
-                            <td><EditableSpan title={tr.load} changeTitle={loadHandler} /></td>
+                            <td><EditableSpan title={tr.type} changeTitle={(typeTr) => {typeHandler(tr.id, typeTr)}} /></td>
+                            <td><EditableSpan title={tr.number} changeTitle={(serialNumber) =>{serialNumberHandler(tr.id, serialNumber)}} /></td>
+                            <td><EditableSpan title={tr.current} changeTitle={(coefficient)=>{coefficientHandler(tr.id, coefficient)}} /></td>
+                            <td><EditableSpan title={tr.class} changeTitle={(clas) =>{clasTHandler(tr.id, clas)}} /></td>
+                            <td><EditableSpan title={tr.load} changeTitle={(load)=>{loadHandler(tr.id, load)}} /></td>
                             <td><EditableSpan title={tr.visual} changeTitle={visualHandler} /></td>
 
                             <td >
