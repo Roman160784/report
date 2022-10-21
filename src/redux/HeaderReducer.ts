@@ -30,46 +30,46 @@ const initialStateHeader: HeaderReducerType = {
 export const HeaderReducer = (state: HeaderReducerType = initialStateHeader, action: MainActionType): HeaderReducerType => {
     switch (action.type) {
         case 'HEADER/SET-CUSTUMER': {
-            return {...state, custumer: action.title}
+            return { ...state, custumer: action.title }
         }
         case 'HEADER/SET-REPORT-NUMBER': {
-            return {...state, reportNumber: action.title}
+            return { ...state, reportNumber: action.title }
         }
         case 'HEADER/SET-RECEIPT': {
-            return {...state, receipt: action.title}
+            return { ...state, receipt: action.title }
         }
         case 'HEADER/SET-DATE': {
-            return {...state, date: action.title}
+            return { ...state, date: action.title }
         }
         case 'HEADER/SET-VOLTAGE': {
-            return {...state, voltage: action.title}
+            return { ...state, voltage: action.title }
         }
         case 'HEADER/SET-HZ': {
-            return {...state, hz: action.title}
+            return { ...state, hz: action.title }
         }
         case 'HEADER/SET-TEMPERATURE': {
-            return {...state, temperature: action.title}
+            return { ...state, temperature: action.title }
         }
         case 'HEADER/SET-WET': {
-            return {...state, wet: action.title}
+            return { ...state, wet: action.title }
         }
         case 'HEADER/SET-KPA': {
-            return {...state, kPa: action.title}
+            return { ...state, kPa: action.title }
         }
         case 'HEADER/SET-STANDARTS': {
-            return {...state, standarts: action.title}
+            return { ...state, standarts: action.title }
         }
         case 'HEADER/SET-USER': {
-            return {...state, user: action.title}
+            return { ...state, user: action.title }
         }
-        
+
         default:
             return state
     }
 }
 
-export type MainActionType = setCustumerACTupe | setReportNumberACTupe | setReceiptACTupe | setDateACTupe | setVoltageACTupe 
-| setHzACTupe | setTemperatureACTupe | setWetACTupe | setkPaACTupe | setStandartsACTupe | setUserACTupe
+export type MainActionType = setCustumerACTupe | setReportNumberACTupe | setReceiptACTupe | setDateACTupe | setVoltageACTupe
+    | setHzACTupe | setTemperatureACTupe | setWetACTupe | setkPaACTupe | setStandartsACTupe | setUserACTupe
 
 export type setCustumerACTupe = ReturnType<typeof setCustumerAC>
 export type setReportNumberACTupe = ReturnType<typeof setReportNumberAC>
@@ -84,14 +84,14 @@ export type setStandartsACTupe = ReturnType<typeof setStandartsAC>
 export type setUserACTupe = ReturnType<typeof setUserAC>
 
 
-export const setCustumerAC = (title: string) => ({type: 'HEADER/SET-CUSTUMER', title} as const)
-export const setReportNumberAC = (title: string) => ({type: 'HEADER/SET-REPORT-NUMBER', title} as const)
-export const setReceiptAC = (title: string) => ({type: 'HEADER/SET-RECEIPT', title} as const)
-export const setDateAC = (title: string) => ({type: 'HEADER/SET-DATE', title} as const)
-export const setVoltageAC = (title: string) => ({type: 'HEADER/SET-VOLTAGE', title} as const)
-export const setHzAC = (title: string) => ({type: 'HEADER/SET-HZ', title} as const)
-export const setTemperatureAC = (title: string) => ({type: 'HEADER/SET-TEMPERATURE', title} as const)
-export const setWetAC = (title: string) => ({type: 'HEADER/SET-WET', title} as const)
-export const setkPaAC = (title: string) => ({type: 'HEADER/SET-KPA', title} as const)
-export const setStandartsAC = (title: string) => ({type: 'HEADER/SET-STANDARTS', title} as const)
-export const setUserAC = (title: string) => ({type: 'HEADER/SET-USER', title} as const)
+export const setCustumerAC = (title: string) => ({ type: 'HEADER/SET-CUSTUMER', title } as const)
+export const setReportNumberAC = (title: string) => ({ type: 'HEADER/SET-REPORT-NUMBER', title } as const)
+export const setReceiptAC = (title: string) => ({ type: 'HEADER/SET-RECEIPT', title } as const)
+export const setDateAC = (title: string) => ({ type: 'HEADER/SET-DATE', title } as const)
+export const setVoltageAC = (title: string) => ({ type: 'HEADER/SET-VOLTAGE', title } as const)
+export const setHzAC = (title: string) => ({ type: 'HEADER/SET-HZ', title } as const)
+export const setTemperatureAC = (title: string) => ({ type: 'HEADER/SET-TEMPERATURE', title } as const)
+export const setWetAC = (title: string) => ({ type: 'HEADER/SET-WET', title } as const)
+export const setkPaAC = (title: string) => ({ type: 'HEADER/SET-KPA', title } as const)
+export const setStandartsAC = (title: string) => ({ type: 'HEADER/SET-STANDARTS', title } as const)
+export const setUserAC = (title: string) => ({ type: 'HEADER/SET-USER', title } as const)
