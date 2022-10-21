@@ -10,27 +10,33 @@ export const DataInput = ({setData, ...props}: DataInputPropsType) => {
 
     const [value, setValue] = useState('')
 
-    // const [data, setData] = useState('')
+    const [error, setError] = useState<string | null>(null)
    
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)   
-        
+        setError(null)
     }
 
     const addDataHandler = () => {
-        if(value.trim() !== '') {
+        if(value.trim() !== '' && !(value.match(/[a-z]/) || value.match(/[A-Z]/))) {
             setData(value.split(' ').map(e => Number(e)))
+        }else {
+            setError('Не верные данные') 
         }
     }
 
-    const onKeyDownhandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if(e.key === 'Enter'){
+    const onBlurHandler = () => {
             addDataHandler()
-        }
         setValue('')
     }
 
+    // pattern={"(-)?\d{1,}|(-)?\d{1,}(\.)\d{1,}|(-)?\d{1,}(\s)(-)?\d{1,}|(-)?\d{1,}(\s)(-)?\d{1,}(\s)(-)?\d{1,}"}
+
     return (
-        <input value={value} type="text" onChange={onChangeHandler} onKeyDown={onKeyDownhandler}/>
+        <>
+     <input value={value} type="text" onChange={onChangeHandler}  onBlur={onBlurHandler} />
+     {error && <div style={{color: 'red'}}>{error}</div>}
+     </>
     )
+    
 }

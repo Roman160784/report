@@ -17,8 +17,16 @@ export const EditableSpanNumbers = ({ title, changeTitle, ...props }: EditableSp
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(+e.currentTarget.value)
         setError(null)
-       
     }
+
+    // const addDataHandler = () => {
+    //     if(value.trim() !== '' && !(value.match(/[a-z]/) || value.match(/[A-Z]/))) {
+    //         setData(value.split(' ').map(e => Number(e)))
+    //     }else {
+    //         setError('Не верные данные') 
+    //     }
+    // }
+
 
     const onBlurHandler = () => {
             changeTitle(value)
@@ -28,7 +36,7 @@ export const EditableSpanNumbers = ({ title, changeTitle, ...props }: EditableSp
     return (
         <>
             {mode
-                ? <input type="text" value={value} onChange={onChangeHandler}
+                ? <input type="number" min="-999" max="999" step="0.01" value={value} onChange={onChangeHandler}
                          onBlur={onBlurHandler} autoFocus  className={classes.inputName}/>
                 : <span style={{color: 'blue'}} onDoubleClick={() => {setMode(true)}}>{title}</span>}
             {error && <div className={classes.error}>{error}</div>}

@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { Button } from '../../common/button';
 import { EditableSpan } from '../../common/input/editableSpan';
 import { EditableSpanNumbers } from '../../common/input/editableSpanNumbers';
-import { chengeClassTAC, chengeCoafficientAC, chengeLoadAC, chengeStigmalAC, chengeTypeAC, setNumberAC, transformerType, visualAC } from '../../redux/ReportReducer';
+import { chengeClassTAC, chengeCoafficientAC, chengeInfelicityAC, chengeLoadAC, chengeStigmalAC, chengeTypeAC, remuveTransformerAC, setNumberAC, transformerType, visualAC } from '../../redux/ReportReducer';
 import { RootReducerType } from '../../redux/store';
 import classes from './transformerData.module.css'
 
@@ -59,50 +60,54 @@ export const Transformer = () => {
         dispatch(chengeStigmalAC(id, stigma))
     }
 
+    const remuveTransformerHandler = (id: string) => {
+        dispatch(remuveTransformerAC(id))
+    }
+
 
 
 
-    const infelicityOHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityOHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));
     }
 
-    const infelicityFHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityFHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
 
-    const infelicitySHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicitySHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
 
-    const infelicityTHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityTHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));
     }
 
-    const infelicityFourHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityFourHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));
     }
 
-    const infelicityFiveHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityFiveHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
 
-    const infelicitySixHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicitySixHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
-    const infelicitySevenHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicitySevenHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
-    const infelicityEightHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityEightHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
-    const infelicityNineHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityNineHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
-    const infelicityTenHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityTenHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
-    const infelicityElevenHandler = (infelicity: number) => {
-        console.log(infelicity);
+    const infelicityElevenHandler = (id: string, i: number, num: number) => {
+        dispatch(chengeInfelicityAC(id, i, num));;
     }
 
 
@@ -122,30 +127,66 @@ export const Transformer = () => {
                             <td><EditableSpan title={tr.load} changeTitle={(load) => { loadHandler(tr.id, load) }} /></td>
                             <td><EditableSpan title={tr.visual} changeTitle={(visual) => { visualHandler(tr.id, visual) }} /></td>
 
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[0].toFixed(2)} changeTitle={infelicityOHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[1].toFixed(1)} changeTitle={infelicityFHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[2].toFixed(2)} changeTitle={infelicitySHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[3].toFixed(1)} changeTitle={infelicityTHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[4].toFixed(2)} changeTitle={infelicityFourHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[5].toFixed(1)} changeTitle={infelicityFiveHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[6].toFixed(2)} changeTitle={infelicitySixHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[7].toFixed(1)} changeTitle={infelicitySevenHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[8].toFixed(2)} changeTitle={infelicityEightHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[9].toFixed(1)} changeTitle={infelicityNineHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[10].toFixed(2)} changeTitle={infelicityTenHandler} /></td>
-                                <td className={classes.sizeData}>
-                                    <EditableSpanNumbers title={+tr.infelicity[11].toFixed(1)} changeTitle={infelicityElevenHandler} /></td>
+                                <td className={ +tr.infelicity[0].toFixed(2) > infelicity.oneP 
+                                    ||  +tr.infelicity[0].toFixed(2) < infelicity.oneM ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[0].toFixed(2)} 
+                                    changeTitle={(num)=>{infelicityOHandler(tr.id, 0, num)}} /></td>
+
+                                <td className={+tr.infelicity[1].toFixed(1) < infelicity.oneMCorner 
+                                    || +tr.infelicity[1].toFixed(1) > infelicity.onePCorner ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[1].toFixed(1)} 
+                                    changeTitle={(num)=>{infelicityFHandler(tr.id, 1, num)}} /></td>
+
+                                <td className={+tr.infelicity[2].toFixed(2) < infelicity.fiveM 
+                                    || +tr.infelicity[2].toFixed(2) > infelicity.fiveP ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[2].toFixed(2)} 
+                                    changeTitle={(num)=>{infelicitySHandler(tr.id, 2, num)}} /></td>
+
+                                <td className={+tr.infelicity[3].toFixed(1) < infelicity.fiveMCorner 
+                                    || +tr.infelicity[3].toFixed(1) > infelicity.fivePCorner ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[3].toFixed(1)} 
+                                    changeTitle={(num)=>{infelicityTHandler(tr.id, 3, num)}} /></td>
+
+                                <td className={+tr.infelicity[4].toFixed(2) < infelicity.otherM 
+                                    || +tr.infelicity[4].toFixed(2) > infelicity.otherP ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[4].toFixed(2)} 
+                                    changeTitle={(num)=>{infelicityFourHandler(tr.id, 4, num)}} /></td>
+
+                                <td className={+tr.infelicity[5].toFixed(1) < infelicity.otherMCorner 
+                                    || +tr.infelicity[5].toFixed(1) > infelicity.otherPCorner ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[5].toFixed(1)} 
+                                    changeTitle={(num)=>{infelicityFiveHandler(tr.id, 5, num)}} /></td>
+
+                                <td className={+tr.infelicity[6].toFixed(2) < infelicity.otherM 
+                                    || +tr.infelicity[6].toFixed(2) > infelicity.otherP ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[6].toFixed(2)} 
+                                    changeTitle={(num)=>{infelicitySixHandler(tr.id, 6, num)}} /></td>
+
+                                <td className={+tr.infelicity[7].toFixed(1) < infelicity.otherMCorner 
+                                    || +tr.infelicity[7].toFixed(1) > infelicity.otherPCorner ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[7].toFixed(1)} 
+                                    changeTitle={(num)=>{infelicitySevenHandler(tr.id, 7, num)}} /></td>
+
+                                <td className={+tr.infelicity[8].toFixed(2) < infelicity.otherM 
+                                    || +tr.infelicity[8].toFixed(2) > infelicity.otherP ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[8].toFixed(2)} 
+                                    changeTitle={(num)=>{infelicityEightHandler(tr.id, 8, num)}} /></td>
+
+                                <td className={+tr.infelicity[9].toFixed(1) < infelicity.otherMCorner 
+                                    || +tr.infelicity[9].toFixed(1) > infelicity.otherPCorner ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[9].toFixed(1)}
+                                     changeTitle={(num)=>{infelicityNineHandler(tr.id, 9, num)}} /></td>
+
+                                <td className={+tr.infelicity[10].toFixed(2) < infelicity.otherM
+                                    || +tr.infelicity[10].toFixed(2) > infelicity.otherP ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[10].toFixed(2)} 
+                                    changeTitle={(num)=>{infelicityTenHandler(tr.id, 10, num)}} /></td>
+
+                                <td className={+tr.infelicity[11].toFixed(1) < infelicity.otherMCorner 
+                                    || +tr.infelicity[11].toFixed(1) > infelicity.otherPCorner ? classes.colorData : ''}>
+                                    <EditableSpanNumbers title={+tr.infelicity[11].toFixed(1)} 
+                                    changeTitle={(num)=>{infelicityElevenHandler(tr.id, 11, num)}} /></td>
+
                             <td>{(tr.visual === infelicity.visual)
                                 && (tr.infelicity[0] >= infelicity.oneM && tr.infelicity[0] <= infelicity.oneP)
                                 && (tr.infelicity[1] >= infelicity.oneMCorner && tr.infelicity[1] <= infelicity.onePCorner)
@@ -162,6 +203,7 @@ export const Transformer = () => {
                                 ? infelicity.good : infelicity.bad}</td>
 
                             <td>15 00  {infelicity.good ? <EditableSpanNumbers title={tr.stigma} changeTitle={(stigma) => { stigmaHandler(tr.id, stigma) }} /> : 0}</td>
+                            {/* <Button onClickCallBack={()=> {remuveTransformerHandler(tr.id)}}/> */}
                         </tr>
                     )
                 }

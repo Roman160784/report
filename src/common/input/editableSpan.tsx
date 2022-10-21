@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import classes from './editableSpan.module.css'
 
 type EditableSpanPropsType = {
