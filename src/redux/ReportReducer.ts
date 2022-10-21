@@ -28,7 +28,7 @@ const initialStateRepot: transformerType[] = [
         type: 'ТОП-0,66-1-5-У3',
         number: '1111',
         class: '0.5S',
-        load: '10',
+        load: '5',
         visual: 'Соответствует',
         current: '300/5',
         infelicity: [0.75, 90, 0.35, 8, 0.11, 5, 0.08, 4, 0.05, 4, 0.33, 7],

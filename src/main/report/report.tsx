@@ -1,65 +1,71 @@
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { DataInput } from '../../common/input/dataInput';
 import { EditableSpan } from '../../common/input/editableSpan';
+import { HeaderReducerType, setCustumerAC, setDateAC, setHzAC, setkPaAC, setReceiptAC, setReportNumberAC, setStandartsAC, setTemperatureAC, setUserAC, setVoltageAC, setWetAC } from '../../redux/HeaderReducer';
 import { addTransformerAC } from '../../redux/ReportReducer';
+import { RootReducerType } from '../../redux/store';
 import { TransformersData } from '../transformersData/transformersData';
 import classes from './report.module.css'
 
 export const Report = () => {
-   
+
+    const headerData = useSelector<RootReducerType, HeaderReducerType>(state => state.header)
+
     const dispatch = useDispatch()
+
+
 
     const seveData = (data: number[]) => {
         dispatch(addTransformerAC(data))
     }
 
     const reportNumberHandler = (reportNumber: string) => {
-        console.log(reportNumber); 
+        dispatch(setReportNumberAC(reportNumber));
     }
 
     const custumerHandler = (custumer: string) => {
-        console.log(custumer); 
+        dispatch(setCustumerAC(custumer));
     }
 
     const receiptHandler = (receipt: string) => {
-        console.log(receipt); 
+        dispatch(setReceiptAC(receipt));
     }
 
     const dateHandler = (date: string) => {
-        console.log(date); 
+        dispatch(setDateAC(date));
     }
 
     const voltageHandler = (volt: string) => {
-        console.log(volt); 
+        dispatch(setVoltageAC(volt));
     }
 
     const hzHandler = (hz: string) => {
-        console.log(hz); 
+        dispatch(setHzAC(hz));
     }
 
     const temperatureHandler = (temperature: string) => {
-        console.log(temperature); 
+        dispatch(setTemperatureAC(temperature));
     }
 
     const wetHandler = (wet: string) => {
-        console.log(wet); 
+        dispatch(setWetAC(wet));
     }
 
     const kPaHandler = (kPa: string) => {
-        console.log(kPa); 
+        dispatch(setkPaAC(kPa));
     }
 
     const standatrsHandler = (standatrs: string) => {
-        console.log(standatrs); 
+        dispatch(setStandartsAC(standatrs));
     }
 
     const userNameHandler = (userName: string) => {
-        console.log(userName); 
+        dispatch(setUserAC(userName));
     }
 
-    
+
     return (
         <div>
             <div>
@@ -74,45 +80,45 @@ export const Report = () => {
                 ул. Лепешинского, 1, г. Гомель, 246015, тел. 26-33-31
             </div>
             <div className={classes.reportNumber}>
-                Протокол № <EditableSpan title={'111'} changeTitle={reportNumberHandler}/>/10/2160 поверки трансформаторов класса 0,5S
-                </div>
-                <div>
-                   Наименование организации заказчика: <EditableSpan title={'ЦСМС'} changeTitle={custumerHandler}/>
-                </div>
-                <div>
-                    номер квитанции-счёт: 2160-<EditableSpan title={'123'} changeTitle={receiptHandler}/>
-                </div>
-                <div>
-                    Дата проведения поверки начало/окончание: <EditableSpan title={'11.11.2021'} changeTitle={dateHandler}/>
-                </div>
-            <div>
-            Условия проведения поверки: напряжение питающей сети, В - <EditableSpan title={'228.0'} changeTitle={voltageHandler}/>; 
-            частота питающей сети, ГЦ - <EditableSpan title={'50.0'} changeTitle={hzHandler}/>;   
-            <br />
-            температура окружающей среды, С - <EditableSpan title={'20.0'} changeTitle={temperatureHandler}/>;
-             относительная влажность воздуха, % - <EditableSpan title={'51.0'} changeTitle={wetHandler}/>,
-              атмосферное давление, кПа - <EditableSpan title={'100.0'} changeTitle={kPaHandler}/>
+                Протокол № <EditableSpan title={headerData.reportNumber} changeTitle={reportNumberHandler} />/10/2160 поверки трансформаторов класса 0,5S
             </div>
             <div>
-                Средства поверки: <EditableSpan title={'YO-YO'} changeTitle={standatrsHandler}/>
+                Наименование организации заказчика: <EditableSpan title={headerData.custumer} changeTitle={custumerHandler} />
+            </div>
+            <div>
+                номер квитанции-счёт: 2160-<EditableSpan title={headerData.receipt} changeTitle={receiptHandler} />
+            </div>
+            <div>
+                Дата проведения поверки начало/окончание: <EditableSpan title={headerData.date} changeTitle={dateHandler} />
+            </div>
+            <div>
+                Условия проведения поверки: напряжение питающей сети, В - <EditableSpan title={headerData.voltage} changeTitle={voltageHandler} />;
+                частота питающей сети, ГЦ - <EditableSpan title={headerData.hz} changeTitle={hzHandler} />;
+                <br />
+                температура окружающей среды, С - <EditableSpan title={headerData.temperature} changeTitle={temperatureHandler} />;
+                относительная влажность воздуха, % - <EditableSpan title={headerData.wet} changeTitle={wetHandler} />,
+                атмосферное давление, кПа - <EditableSpan title={headerData.kPa} changeTitle={kPaHandler} />
+            </div>
+            <div>
+                Средства поверки: <EditableSpan title={headerData.standarts} changeTitle={standatrsHandler} />
             </div>
             <div>
                 ТНПА: ГОСТ 8.217-2003 "Тртансформаторы тока. Методика поверки"
             </div>
             <div>
-            <br />
-           Данные <DataInput setData={ seveData}   /> 
-            <br />
+                <br />
+                Данные <DataInput setData={seveData} />
+                <br />
             </div>
             <br />
             <div>
-                <TransformersData/> 
+                <TransformersData />
             </div>
-           <div>
-            Государственный поверитель ______________________ <EditableSpan title={'YO-YO'} changeTitle={userNameHandler}/>
-           </div>
-            
-            
+            <div>
+                Государственный поверитель ______________________ <EditableSpan title={headerData.user} changeTitle={userNameHandler} />
+            </div>
+
+
         </div>
     )
 }
