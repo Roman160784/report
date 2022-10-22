@@ -31,7 +31,7 @@ const initialStateRepot: transformerType[] = [
         current: '300/5',
         infelicity: [0.75, 90, 0.35, 8, 0.11, 5, 0.08, 4, 0.05, 4, 0.33, 7],
         result: 'Годен',
-        stigma: 7520
+        stigma: 1500000
     }
 ]
 

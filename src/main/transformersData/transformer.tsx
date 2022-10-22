@@ -200,7 +200,7 @@ export const Transformer = () => {
                                 && (tr.infelicity[11] >= infelicity.otherMCorner && tr.infelicity[11] <= infelicity.otherPCorner)
                                 ? infelicity.good : infelicity.bad}</td>
 
-                            <td>15 00  {infelicity.good ? <EditableSpanNumbers title={tr.stigma} changeTitle={(stigma) => { stigmaHandler(tr.id, stigma) }} /> : 0}</td>
+                            <td>  {infelicity.good ? <EditableSpanNumbers title={tr.stigma} changeTitle={(stigma) => { stigmaHandler(tr.id, stigma) }} /> : 0}</td>
                             {/* <Button onClickCallBack={()=> {remuveTransformerHandler(tr.id)}}/> */}
                         </tr>
                     )

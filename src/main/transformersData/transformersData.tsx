@@ -1,24 +1,31 @@
-import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
+import React, { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { EditableSpan } from '../../common/input/editableSpan';
-import { EditableSpanNumbers } from '../../common/input/editableSpanNumbers';
 import { transformerType } from '../../redux/ReportReducer';
 import { RootReducerType } from '../../redux/store';
 import { Transformer } from './transformer';
-import classes from './transformerData.module.css'
+import { useDownloadExcel } from 'react-export-table-to-excel';
+
 
 
 export const TransformersData = () => {
     const transformer = useSelector<RootReducerType, transformerType[]>(state => state.report)
+
+    const tableRef = useRef(null);
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
+
     return (
         <div>
             <div>
-                <table border={1}>
+                <table border={1} ref={tableRef}>
                     <tr>
                         <th rowSpan={3}>№ п/п</th>
                         <th rowSpan={3}>Тип трансформатора тока</th>
                         <th rowSpan={3}>Заводской номер</th>
-                        <th rowSpan={3}>Коэфициент трансф.</th>
+                        <th rowSpan={3}>Коэфициент трансф., A</th>
                         <th rowSpan={3}>Класс точности</th>
                         <th rowSpan={3}>Вторичная нагрузка V/A</th>
                         <th rowSpan={3}>Внешний осмотр</th>
@@ -60,7 +67,7 @@ export const TransformersData = () => {
                     </tr>
                     <Transformer />
                 </table>
-
+                <button style={{color: 'green'}} onClick={onDownload}> Export excel </button>
             </div>
 
             <br />
