@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "//Roman160784.github.io/report/static/css/main.ceb911b8.css",
-    "main.js": "//Roman160784.github.io/report/static/js/main.934c2c22.js",
-    "static/js/787.6af32225.chunk.js": "//Roman160784.github.io/report/static/js/787.6af32225.chunk.js",
-    "index.html": "//Roman160784.github.io/report/index.html",
-    "main.ceb911b8.css.map": "//Roman160784.github.io/report/static/css/main.ceb911b8.css.map",
-    "main.934c2c22.js.map": "//Roman160784.github.io/report/static/js/main.934c2c22.js.map",
-    "787.6af32225.chunk.js.map": "//Roman160784.github.io/report/static/js/787.6af32225.chunk.js.map"
+    "main.css": "/report/static/css/main.ceb911b8.css",
+    "main.js": "/report/static/js/main.395372e7.js",
+    "static/js/787.6af32225.chunk.js": "/report/static/js/787.6af32225.chunk.js",
+    "index.html": "/report/index.html",
+    "main.ceb911b8.css.map": "/report/static/css/main.ceb911b8.css.map",
+    "main.395372e7.js.map": "/report/static/js/main.395372e7.js.map",
+    "787.6af32225.chunk.js.map": "/report/static/js/787.6af32225.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ceb911b8.css",
-    "static/js/main.934c2c22.js"
+    "static/js/main.395372e7.js"
   ]
 }
