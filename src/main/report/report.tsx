@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataInput } from '../../common/input/dataInput';
 import { EditableSpan } from '../../common/input/editableSpan';
+import { NameOrganization } from '../../common/nameOrganization';
 import { HeaderReducerType, setCustumerAC, setDateAC, setHzAC, setkPaAC, setReceiptAC, setReportNumberAC, setStandartsAC, setTemperatureAC, setUserAC, setVoltageAC, setWetAC } from '../../redux/HeaderReducer';
 import { addTransformerAC } from '../../redux/ReportReducer';
 import { RootReducerType } from '../../redux/store';
@@ -69,15 +70,7 @@ export const Report = () => {
     return (
         <div>
             <div>
-                Компетентность Республиканского унитарного предприятия
-                <br />
-                "Гомельский центр стандартизации метрологии и сертификации"
-                <br />
-                подтверждена БГЦА на соответствие требованиям СТБ ИСО/МЭК 17025-2007
-                <br />
-                Аттестат аккредитации BY/112 02.3.0.0056, действует до 06.09.2024
-                <br />
-                ул. Лепешинского, 1, г. Гомель, 246015, тел. 26-33-31
+               <NameOrganization/>
             </div>
             <div className={classes.reportNumber}>
                 Протокол № <EditableSpan title={headerData.reportNumber} changeTitle={reportNumberHandler} />/10/2160 поверки трансформаторов класса 0,5S
