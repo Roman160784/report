@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { DataHeader } from '../../common/dataHeader';
 import { DataInput } from '../../common/input/dataInput';
 import { EditableSpan } from '../../common/input/editableSpan';
 import { NameOrganization } from '../../common/nameOrganization';
@@ -26,38 +27,6 @@ export const Report = () => {
         dispatch(setReportNumberAC(reportNumber));
     }
 
-    const custumerHandler = (custumer: string) => {
-        dispatch(setCustumerAC(custumer));
-    }
-
-    const receiptHandler = (receipt: string) => {
-        dispatch(setReceiptAC(receipt));
-    }
-
-    const dateHandler = (date: string) => {
-        dispatch(setDateAC(date));
-    }
-
-    const voltageHandler = (volt: string) => {
-        dispatch(setVoltageAC(volt));
-    }
-
-    const hzHandler = (hz: string) => {
-        dispatch(setHzAC(hz));
-    }
-
-    const temperatureHandler = (temperature: string) => {
-        dispatch(setTemperatureAC(temperature));
-    }
-
-    const wetHandler = (wet: string) => {
-        dispatch(setWetAC(wet));
-    }
-
-    const kPaHandler = (kPa: string) => {
-        dispatch(setkPaAC(kPa));
-    }
-
     const standatrsHandler = (standatrs: string) => {
         dispatch(setStandartsAC(standatrs));
     }
@@ -76,23 +45,9 @@ export const Report = () => {
                 Протокол № <EditableSpan title={headerData.reportNumber} changeTitle={reportNumberHandler} />/10/2160 поверки трансформаторов класса 0,5S
             </div>
             <div>
-                Наименование организации заказчика: <EditableSpan title={headerData.custumer} changeTitle={custumerHandler} />
+            <DataHeader/>
             </div>
-            <div>
-                номер квитанции-счёт: 2160-<EditableSpan title={headerData.receipt} changeTitle={receiptHandler} />
-            </div>
-            <div>
-                Дата проведения поверки начало/окончание: <EditableSpan title={headerData.date} changeTitle={dateHandler} />
-            </div>
-            <div>
-                Условия проведения поверки: напряжение питающей сети, В - <EditableSpan title={headerData.voltage} changeTitle={voltageHandler} />;
-                частота питающей сети, ГЦ - <EditableSpan title={headerData.hz} changeTitle={hzHandler} />;
-                <br />
-                температура окружающей среды, С - <EditableSpan title={headerData.temperature} changeTitle={temperatureHandler} />;
-                относительная влажность воздуха, % - <EditableSpan title={headerData.wet} changeTitle={wetHandler} />,
-                атмосферное давление, кПа - <EditableSpan title={headerData.kPa} changeTitle={kPaHandler} />
-            </div>
-            <div>
+                <div>
                 Средства поверки: <EditableSpan title={headerData.standarts} changeTitle={standatrsHandler} />
             </div>
             <div>
