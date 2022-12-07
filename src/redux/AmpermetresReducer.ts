@@ -28,6 +28,7 @@ export type ampermetresReducerType = {
 }
 
 const initialStateAmpermetres: ampermetresReducerType[] = [{
+    
     ampermetr:  [{id: Date.now().toString(),
         count: 1,
         type: 'Э59',

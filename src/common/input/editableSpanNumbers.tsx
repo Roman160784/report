@@ -3,10 +3,10 @@ import classes from './editableSpan.module.css'
 
 type EditableSpanPropsType = {
     title: number
-    changeTitle: (title: number) => void
+    changeNumber: (title: number) => void
 }
 
-export const EditableSpanNumbers = ({ title, changeTitle, ...props }: EditableSpanPropsType) => {
+export const EditableSpanNumbers = ({ title, changeNumber, ...props }: EditableSpanPropsType) => {
 
    
 
@@ -29,7 +29,7 @@ export const EditableSpanNumbers = ({ title, changeTitle, ...props }: EditableSp
 
 
     const onBlurHandler = () => {
-            changeTitle(value)
+            changeNumber(value)
             setMode(false)
     }
 

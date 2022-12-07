@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../button';
 import { EditableSpan } from '../input/editableSpan';
 
 export type standardType = {
@@ -27,6 +28,7 @@ export const Standards = ({standard, ...props}: StandardsType) => {
                     <td><EditableSpan title={st.class} changeTitle={()=>[]}/></td>
                     <td><EditableSpan title={st.number} changeTitle={()=>[]}/></td>
                     <td><EditableSpan title={st.controlDate} changeTitle={()=>[]}/></td>
+                    <Button onClickCallBack={()=> {}}/>
                 </tr>
             )
           })  
