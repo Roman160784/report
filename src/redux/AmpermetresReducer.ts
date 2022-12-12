@@ -1,3 +1,4 @@
+import { v1 } from 'uuid';
 //types
 
 export type ampermetrType = {
@@ -29,7 +30,8 @@ export type ampermetresReducerType = {
 
 const initialStateAmpermetres: ampermetresReducerType[] = [{
     
-    ampermetr:  [{id: Date.now().toString(),
+    ampermetr:  [
+        {id: v1(),
         count: 1,
         type: 'Э59',
         number: '1111',
@@ -40,8 +42,8 @@ const initialStateAmpermetres: ampermetresReducerType[] = [{
         result: 'Соответствует ОМТ',
         stigma: 15000}],
 
-    standardsAmpermetres: [{
-        id: Date.now().toString(),
+    standardsAmpermetres: [
+        {id: v1(),
         name: 'Ампервольтметр',
         type: 'Ц4311',
         number: '1111',
@@ -49,7 +51,7 @@ const initialStateAmpermetres: ampermetresReducerType[] = [{
         controlDate: '11.11.2022',
     },
     {
-        id: Date.now().toString(),
+        id: v1(),
         name: 'Установка',
         type: 'У300',
         number: '21',
@@ -57,7 +59,7 @@ const initialStateAmpermetres: ampermetresReducerType[] = [{
         controlDate: '11.11.2022',
     },
     {
-        id: Date.now().toString(),
+        id: v1(),
         name: 'Вольтметр',
         type: 'ЦВ8500/3',
         number: '21',
@@ -65,7 +67,7 @@ const initialStateAmpermetres: ampermetresReducerType[] = [{
         controlDate: '11.11.2022',
     },
     {
-        id: Date.now().toString(),
+        id: v1(),
         name: 'Амперметр',
         type: 'ЦА8500/1',
         number: '21',
@@ -76,10 +78,43 @@ const initialStateAmpermetres: ampermetresReducerType[] = [{
 }]
 
 export const AmpermetresReducer = (state: ampermetresReducerType[] = initialStateAmpermetres, action: MainActionType):ampermetresReducerType[] => {
-    switch (action){
+    switch (action.type){
+
+        case 'AMPERMETR/CHENGE-STANDARD-PARAMETHR' : {
+            return state.map(st => ({ ...st, 
+               standardsAmpermetres: st.standardsAmpermetres.map(s => s.id === action.id ? {...s, [action.key] : action.title} : s)
+            }) )
+        }
+        
+        case 'AMPERMETR/REMOVE-STANDARD' : {
+            return state.map(st => ({...st, standardsAmpermetres: st.standardsAmpermetres.filter(s => s.id !== action.id)}))
+        }
+
+        case 'AMPERMETR/ADD-STANDARD' : {
+            const arrayStandards = state[0].standardsAmpermetres
+            const lastObj = arrayStandards[arrayStandards.length - 1]
+            const newObj = {...lastObj, id: v1(), number: action.title}
+            const copyState = [...state]
+            copyState[0].standardsAmpermetres.unshift(newObj)
+
+            return copyState
+            
+        }
+        
         default:
             return state
     }
 } 
 
-export type MainActionType = ''
+export type MainActionType = chengeStandardTitleACType | removeStandardACType | addStandardACType
+
+export type chengeStandardTitleACType = ReturnType<typeof chengeStandardTitleAC>
+export type removeStandardACType = ReturnType<typeof removeStandardAC>
+export type addStandardACType = ReturnType<typeof addStandardAC>
+
+export const chengeStandardTitleAC = (id: string, title: string, key: string) => (
+    { type: 'AMPERMETR/CHENGE-STANDARD-PARAMETHR', id, title, key } as const)
+
+export const removeStandardAC = (id: string,) => ({ type: 'AMPERMETR/REMOVE-STANDARD', id } as const)
+    
+export const addStandardAC = (title: string) => ({type: 'AMPERMETR/ADD-STANDARD', title} as const)

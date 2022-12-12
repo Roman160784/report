@@ -1,3 +1,4 @@
+import { v1 } from 'uuid';
 //types
 
 export type ohmmetrType = {
@@ -28,7 +29,7 @@ export type ohmmetresReducerType = {
 }
 
 const initialStateOhmmetres: ohmmetresReducerType[] = [{
-    ohmmetr:  [{id: Date.now().toString(),
+    ohmmetr:  [{id: v1(),
         count: 1,
         type: 'ЭС0202/2-г',
         number: '1111',
@@ -40,7 +41,7 @@ const initialStateOhmmetres: ohmmetresReducerType[] = [{
         stigma: 15000}],
 
         standardsOhmmetres: [{
-        id: Date.now().toString(),
+        id: v1(),
         name: 'Магазин сопротивлений',
         type: 'МСР-63',
         number: '1111',
@@ -48,7 +49,7 @@ const initialStateOhmmetres: ohmmetresReducerType[] = [{
         controlDate: '11.11.2022',
     },
     {
-        id: Date.now().toString(),
+        id: v1(),
         name: 'Магазин сопротивления',
         type: 'Р4830/2',
         number: '1111',
@@ -56,7 +57,7 @@ const initialStateOhmmetres: ohmmetresReducerType[] = [{
         controlDate: '11.11.2022',
     },
     {
-        id: Date.now().toString(),
+        id: v1(),
         name: 'Магазин сопротивления',
         type: 'Р40116',
         number: '21',
@@ -64,7 +65,7 @@ const initialStateOhmmetres: ohmmetresReducerType[] = [{
         controlDate: '11.11.2022',
     },
     {
-        id: Date.now().toString(),
+        id: v1(),
         name: 'Магазин сопротивления',
         type: 'Р4830/1',
         number: '21',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AmperOhmetresHeaderStandards } from '../../common/amperOhmmetres/amperOhmmetres';
 import { Button } from '../../common/button';
 import { DataAmperOhmForReport } from '../../common/dataAmperOhmForReport/DataAmperOhmForReport';
@@ -8,9 +8,9 @@ import { AmprOhmStandardsInput } from '../../common/input/AmperOhmStandardsInput
 import { EditableSpan } from '../../common/input/editableSpan';
 import { NameOrganization } from '../../common/nameOrganization';
 import { Standards } from '../../common/standarts/standards';
-import { ampermetresReducerType, standardsAmpermetresType } from '../../redux/AmpermetresReducer';
+import { addStandardAC, ampermetresReducerType, chengeStandardTitleAC, removeStandardAC, standardsAmpermetresType } from '../../redux/AmpermetresReducer';
 import { RootReducerType } from '../../redux/store';
-import classes from './amper.module.css'
+import style from './amper.module.css'
 
 
 export const Ampermetres = () => {
@@ -18,7 +18,19 @@ export const Ampermetres = () => {
     const ampermetres = useSelector<RootReducerType, ampermetresReducerType[]>(s => s.ampermetres)
     const standardsAmpermetres = ampermetres.filter(el => el.standardsAmpermetres)
     const dataAmpermetres = ampermetres.filter(el => el.ampermetr)
+    const dispatch = useDispatch()
   
+    const chengeStandardName = (id: string, title: string, key: string) => {
+        dispatch(chengeStandardTitleAC(id, title, key))
+    }
+
+    const removeStandard = (id: string) => {
+        dispatch(removeStandardAC(id))
+    }
+
+    const addStandard = (title: string) => {
+        dispatch((addStandardAC(title)))
+    }
 
     return (
 
@@ -26,7 +38,7 @@ export const Ampermetres = () => {
             <div>
                 <NameOrganization />
             </div>
-            <div className={classes.reportNum}>
+            <div className={style.reportNum}>
                 Протокол № <EditableSpan title={'123'} changeTitle={() => { }} /> /01/2160
             </div>
             <div>
@@ -36,7 +48,7 @@ export const Ampermetres = () => {
                 ТНПА: ГОСТ 8.497-83
             </div>
             <br />
-            <div>Средства поверки: <AmprOhmStandardsInput setDataForAmperOhm={() => {}}/> <span>введите заводской № СИ</span></div> 
+            <div>Средства поверки: <AmprOhmStandardsInput setDataForAmperOhm={addStandard}/> <span>введите заводской № СИ</span></div> 
             <br />
             <div>
                 <table border={1} >
@@ -45,7 +57,10 @@ export const Ampermetres = () => {
                     {
                         standardsAmpermetres.map(st => {
                             return (
-                                <Standards standard={st.standardsAmpermetres} />
+                                <Standards standard={st.standardsAmpermetres} 
+                                chengeStandardName={chengeStandardName}
+                                removeStandard={removeStandard}
+                                />
                             )
                         })
                     }
