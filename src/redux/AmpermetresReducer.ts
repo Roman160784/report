@@ -97,8 +97,29 @@ export const AmpermetresReducer = (state: ampermetresReducerType[] = initialStat
             const copyState = [...state]
             copyState[0].standardsAmpermetres.unshift(newObj)
 
+            return copyState  
+        }
+
+        case 'AMPERMETR/CHENGE-AMPERMETRES-PARAMETHR' : {
+            return state.map(st => ({...st, ampermetr: st.ampermetr.map(a => a.id === action.id ? {...a, [action.key] : action.title} : a)}))
+        }
+
+        case 'AMPERMETR/CHENGE-STIGMA-NUMBER' : {
+            return state.map(st => ({...st, ampermetr: st.ampermetr.map(a => a.id === action.id ? {...a, stigma : action.num} : a)}))
+        }
+
+        case 'AMPERMETR/REMOVE-AMPERMETR' : {
+            return state.map(st => ({...st, ampermetr: st.ampermetr.filter(a => a.id !== action.id)}))
+        }
+
+        case 'AMPERMETR/ADD-AMPERMETR' : {
+            const arrayAmpermetres = state[0].ampermetr
+            const lastAmpermetr = arrayAmpermetres[arrayAmpermetres.length -1]
+            const newAmpermetr = {...lastAmpermetr, id: v1(), number: action.title, stigma: lastAmpermetr.stigma + 1}
+            const copyState = [...state]
+            copyState[0].ampermetr.push(newAmpermetr)
+
             return copyState
-            
         }
         
         default:
@@ -106,15 +127,25 @@ export const AmpermetresReducer = (state: ampermetresReducerType[] = initialStat
     }
 } 
 
-export type MainActionType = chengeStandardTitleACType | removeStandardACType | addStandardACType
+export type MainActionType = chengeStandardTitleACType | removeStandardACType | addStandardACType 
+| chengeAmpermetresTitleACType| chengeStigmaNumberACType | removeAmpermetrACType | addAmpermetrACType
 
 export type chengeStandardTitleACType = ReturnType<typeof chengeStandardTitleAC>
 export type removeStandardACType = ReturnType<typeof removeStandardAC>
 export type addStandardACType = ReturnType<typeof addStandardAC>
+export type chengeAmpermetresTitleACType = ReturnType<typeof chengeAmpermetresTitleAC>
+export type chengeStigmaNumberACType = ReturnType<typeof chengeStigmaNumberAC>
+export type removeAmpermetrACType = ReturnType<typeof removeAmpermetrAC>
+export type addAmpermetrACType = ReturnType<typeof addAmpermetrAC>
+
 
 export const chengeStandardTitleAC = (id: string, title: string, key: string) => (
     { type: 'AMPERMETR/CHENGE-STANDARD-PARAMETHR', id, title, key } as const)
-
-export const removeStandardAC = (id: string,) => ({ type: 'AMPERMETR/REMOVE-STANDARD', id } as const)
-    
+export const removeStandardAC = (id: string,) => ({ type: 'AMPERMETR/REMOVE-STANDARD', id } as const)   
 export const addStandardAC = (title: string) => ({type: 'AMPERMETR/ADD-STANDARD', title} as const)
+
+export const chengeAmpermetresTitleAC = (id: string, title: string, key: string) => (
+    { type: 'AMPERMETR/CHENGE-AMPERMETRES-PARAMETHR', id, title, key } as const)
+export const chengeStigmaNumberAC = (id: string, num: number) => ({type: 'AMPERMETR/CHENGE-STIGMA-NUMBER', id, num} as const)
+export const removeAmpermetrAC = (id: string,) => ({ type: 'AMPERMETR/REMOVE-AMPERMETR', id } as const)
+export const addAmpermetrAC = (title: string) => ({type: 'AMPERMETR/ADD-AMPERMETR', title} as const) 
