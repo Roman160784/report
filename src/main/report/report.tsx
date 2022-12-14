@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ButtonNavigation } from '../../common/ButtonNav';
 import { DataHeader } from '../../common/dataHeader';
 import { DataInput } from '../../common/input/dataInput';
 import { EditableSpan } from '../../common/input/editableSpan';
@@ -9,14 +10,16 @@ import { HeaderReducerType, setCustumerAC, setDateAC, setHzAC, setkPaAC, setRece
 import { addTransformerAC } from '../../redux/ReportReducer';
 import { RootReducerType } from '../../redux/store';
 import { TransformersData } from '../transformersData/transformersData';
+import { Navigate, useNavigate } from "react-router-dom"
 import classes from './report.module.css'
+import { pathEnum } from '../mainReportsPage/mainReportsPage';
 
 export const Report = () => {
 
     const headerData = useSelector<RootReducerType, HeaderReducerType>(state => state.header)
 
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
 
 
     const seveData = (data: number[]) => {
@@ -35,19 +38,25 @@ export const Report = () => {
         dispatch(setUserAC(userName));
     }
 
+    const navigatonHandler = () => {
+        navigate(pathEnum.main)
+    }
 
     return (
         <div>
             <div>
-               <NameOrganization/>
+                <ButtonNavigation onClickCallBack={navigatonHandler} />
+            </div>
+            <div>
+                <NameOrganization />
             </div>
             <div className={classes.reportNumber}>
                 Протокол № <EditableSpan title={headerData.reportNumber} changeTitle={reportNumberHandler} />/10/2160 поверки трансформаторов класса 0,5S
             </div>
             <div>
-            <DataHeader/>
+                <DataHeader />
             </div>
-                <div>
+            <div>
                 Средства поверки: <EditableSpan title={headerData.standarts} changeTitle={standatrsHandler} />
             </div>
             <div>

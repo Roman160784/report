@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { AmperOhmetresHeaderStandards } from '../../common/amperOhmmetres/amperOhmmetres';
+import { ButtonNavigation } from '../../common/ButtonNav';
 import { DataAmperOhmForReport } from '../../common/dataAmperOhmForReport/DataAmperOhmForReport';
 import { DataHeader } from '../../common/dataHeader';
 import { AmprOhmStandardsInput } from '../../common/input/AmperOhmStandardsInput';
@@ -10,21 +12,23 @@ import { Standards } from '../../common/standarts/standards';
 import { HeaderReducerType, setReportNumberAC, setUserAC } from '../../redux/HeaderReducer';
 import { addOhmetrAC, addStandardForOhmetrAC, chengeOhmetresTitleAC, chengeStandardOhmetrTitleAC, chengeStigmaNumberOhmetrAC, ohmmetresReducerType, removeOhmetrAC, removeStandardOhmetresAC } from '../../redux/OhmmetresReducer';
 import { RootReducerType } from '../../redux/store';
+import { pathEnum } from '../mainReportsPage/mainReportsPage';
 import style from './ohmetr.module.css';
 
 export const Ohmetres = () => {
-    
+
     const headerData = useSelector<RootReducerType, HeaderReducerType>(state => state.header)
     const ohmetres = useSelector<RootReducerType, ohmmetresReducerType[]>(s => s.ohmetres)
     const standardsOhmetres = ohmetres.filter(el => el.standardsOhmmetres)
     const dataOhmetres = ohmetres.filter(el => el.ohmmetr)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const reportNumberHandler = (reportNumber: string) => {
         dispatch(setReportNumberAC(reportNumber));
     }
 
-    const chengeStandardName = (id: string, title: string, key: string) => { 
+    const chengeStandardName = (id: string, title: string, key: string) => {
         dispatch(chengeStandardOhmetrTitleAC(id, title, key))
     }
 
@@ -50,33 +54,40 @@ export const Ohmetres = () => {
     const userNameHandler = (userName: string) => {
         dispatch(setUserAC(userName));
     }
+    const navigatonHandler = () => {
+        navigate(pathEnum.main)
+    }
 
-    return(
+    return (
         <div>
-            <NameOrganization/>
-        
-        <div className={style.reportNum}>
+            <div>
+                <ButtonNavigation onClickCallBack={navigatonHandler} />
+            </div>
+            <div>
+                <NameOrganization />
+            </div>
+            <div className={style.reportNum}>
                 Протокол № <EditableSpan title={headerData.reportNumber} changeTitle={reportNumberHandler} /> /01/2160
-        </div>
-        <div>
+            </div>
+            <div>
                 <DataHeader />
             </div>
             <div>
                 ТНПА: ГОСТ 8.409-81
             </div>
             <br />
-            <div>Средства поверки: <AmprOhmStandardsInput setDataForAmperOhm={addStandard}/> <span>введите заводской № СИ</span></div> 
+            <div>Средства поверки: <AmprOhmStandardsInput setDataForAmperOhm={addStandard} /> <span>введите заводской № СИ</span></div>
             <br />
             <div>
-            <table border={1} >
+                <table border={1} >
                     <AmperOhmetresHeaderStandards />
 
                     {
                         standardsOhmetres.map(st => {
                             return (
-                                <Standards standard={st.standardsOhmmetres} 
-                                chengeStandardName={chengeStandardName}
-                                removeStandard={removeStandard}
+                                <Standards standard={st.standardsOhmmetres}
+                                    chengeStandardName={chengeStandardName}
+                                    removeStandard={removeStandard}
                                 />
                             )
                         })
@@ -92,10 +103,10 @@ export const Ohmetres = () => {
             <br />
             <br />
             <br />
-            <div><AmprOhmStandardsInput setDataForAmperOhm={addOhmetr}/> <span>введите заводской № СИ</span></div>
+            <div><AmprOhmStandardsInput setDataForAmperOhm={addOhmetr} /> <span>введите заводской № СИ</span></div>
             <br />
             <div>
-            <table border={1} >
+                <table border={1} >
                     <tr>
                         <th>Номер<br /> п.п</th>
                         <th>Тип,<br /> предел измерений</th>
@@ -111,9 +122,9 @@ export const Ohmetres = () => {
                         dataOhmetres.map(data => {
                             return (
                                 <DataAmperOhmForReport ampermetr={data.ohmmetr}
-                                chengeAmpermetresTitle={chengeOhmetresParamethr}
-                                chengeStigmaNumber={chengeOhmetresStigmaNumber}
-                                removeAmpermetr={removeOhmetr}
+                                    chengeAmpermetresTitle={chengeOhmetresParamethr}
+                                    chengeStigmaNumber={chengeOhmetresStigmaNumber}
+                                    removeAmpermetr={removeOhmetr}
                                 />
                             )
                         })
@@ -126,7 +137,7 @@ export const Ohmetres = () => {
             </div>
         </div>
     )
-    
+
 }
 
 

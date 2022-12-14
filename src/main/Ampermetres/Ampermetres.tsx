@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { AmperOhmetresHeaderStandards } from '../../common/amperOhmmetres/amperOhmmetres';
 import { Button } from '../../common/button';
+import { ButtonNavigation } from '../../common/ButtonNav';
 import { DataAmperOhmForReport } from '../../common/dataAmperOhmForReport/DataAmperOhmForReport';
 import { DataHeader } from '../../common/dataHeader';
 import { AmprOhmStandardsInput } from '../../common/input/AmperOhmStandardsInput';
@@ -11,6 +13,7 @@ import { Standards } from '../../common/standarts/standards';
 import { addAmpermetrAC, addStandardAC, ampermetresReducerType, chengeAmpermetresTitleAC, chengeStandardTitleAC, chengeStigmaNumberAC, removeAmpermetrAC, removeStandardAC, standardsAmpermetresType } from '../../redux/AmpermetresReducer';
 import { HeaderReducerType, setReportNumberAC, setUserAC } from '../../redux/HeaderReducer';
 import { RootReducerType } from '../../redux/store';
+import { pathEnum } from '../mainReportsPage/mainReportsPage';
 import style from './amper.module.css'
 
 
@@ -21,7 +24,8 @@ export const Ampermetres = () => {
     const dataAmpermetres = ampermetres.filter(el => el.ampermetr)
     const headerData = useSelector<RootReducerType, HeaderReducerType>(state => state.header)
     const dispatch = useDispatch()
-  
+    const navigate = useNavigate()
+
     const chengeStandardName = (id: string, title: string, key: string) => {
         dispatch(chengeStandardTitleAC(id, title, key))
     }
@@ -41,7 +45,7 @@ export const Ampermetres = () => {
     const chengeStigmaNumber = (id: string, num: number) => {
         dispatch(chengeStigmaNumberAC(id, num))
     }
-    
+
     const removeAmpermetr = (id: string) => {
         dispatch(removeAmpermetrAC(id))
     }
@@ -58,9 +62,16 @@ export const Ampermetres = () => {
         dispatch(setUserAC(userName));
     }
 
+    const navigatonHandler = () => {
+        navigate(pathEnum.main)
+    }
+
     return (
 
         <div>
+            <div>
+                <ButtonNavigation onClickCallBack={navigatonHandler} />
+            </div>
             <div>
                 <NameOrganization />
             </div>
@@ -74,7 +85,7 @@ export const Ampermetres = () => {
                 ТНПА: ГОСТ 8.497-83
             </div>
             <br />
-            <div>Средства поверки: <AmprOhmStandardsInput setDataForAmperOhm={addStandard}/> <span>введите заводской № СИ</span></div> 
+            <div>Средства поверки: <AmprOhmStandardsInput setDataForAmperOhm={addStandard} /> <span>введите заводской № СИ</span></div>
             <br />
             <div>
                 <table border={1} >
@@ -83,9 +94,9 @@ export const Ampermetres = () => {
                     {
                         standardsAmpermetres.map(st => {
                             return (
-                                <Standards standard={st.standardsAmpermetres} 
-                                chengeStandardName={chengeStandardName}
-                                removeStandard={removeStandard}
+                                <Standards standard={st.standardsAmpermetres}
+                                    chengeStandardName={chengeStandardName}
+                                    removeStandard={removeStandard}
                                 />
                             )
                         })
@@ -102,7 +113,7 @@ export const Ampermetres = () => {
             <br />
             <br />
             <br />
-            <div><AmprOhmStandardsInput setDataForAmperOhm={addAmpermetr}/> <span>введите заводской № СИ</span></div>
+            <div><AmprOhmStandardsInput setDataForAmperOhm={addAmpermetr} /> <span>введите заводской № СИ</span></div>
             <br />
             <div>
                 <table border={1} >
@@ -121,9 +132,9 @@ export const Ampermetres = () => {
                         dataAmpermetres.map(data => {
                             return (
                                 <DataAmperOhmForReport ampermetr={data.ampermetr}
-                                chengeAmpermetresTitle={chengeAmpermetresTitle}
-                                chengeStigmaNumber={chengeStigmaNumber}
-                                removeAmpermetr={removeAmpermetr}
+                                    chengeAmpermetresTitle={chengeAmpermetresTitle}
+                                    chengeStigmaNumber={chengeStigmaNumber}
+                                    removeAmpermetr={removeAmpermetr}
                                 />
                             )
                         })

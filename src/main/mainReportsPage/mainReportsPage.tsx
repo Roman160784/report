@@ -18,10 +18,11 @@ export enum pathEnum {
 export const MainReportsPage = () => {
     return (
         <div>
-            <Nav/>
+            {/* <Nav/> */}
             <div>
                 <div>
                     <Routes>
+                        <Route path={pathEnum.main} element={<Nav/>}/>
                         <Route path={pathEnum.ohmmeter} element={<Ohmetres/>}/>
                         <Route path={pathEnum.ampermetr} element={<Ampermetres/>}/>
                         <Route path={pathEnum.transformer} element={<Report/>}/>
