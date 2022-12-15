@@ -101,8 +101,6 @@ export const Ohmetres = () => {
             <br />
             <br />
             <br />
-            <br />
-            <br />
             <div><AmprOhmStandardsInput setDataForAmperOhm={addOhmetr} /> <span>введите заводской № СИ</span></div>
             <br />
             <div>
