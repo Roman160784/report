@@ -62,15 +62,16 @@ export const Report = () => {
             <div>
                 ТНПА: ГОСТ 8.217-2003 "Тртансформаторы тока. Методика поверки"
             </div>
-            <div>
-                <br />
-                Данные <DataInput setData={seveData} />
-                <br />
-            </div>
+            
             <br />
             <div>
                 <TransformersData />
             </div>
+            <div>
+                Данные <DataInput setData={seveData} />
+                <br />
+            </div>
+            <br />
             <div>
                 Государственный поверитель ______________________ <EditableSpan title={headerData.user} changeTitle={userNameHandler} />
             </div>

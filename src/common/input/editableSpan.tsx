@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
 import classes from './editableSpan.module.css'
 
 type EditableSpanPropsType = {
@@ -28,11 +28,18 @@ export const EditableSpan = ({ title, changeTitle, ...props }: EditableSpanProps
         }
     }
 
+    const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter') {
+            onBlurHandler()
+            setValue('')
+        }
+    }
+
     return (
         <>
             {mode
                 ? <input type="text" value={value} onChange={onChangeHandler}
-                         onBlur={onBlurHandler} autoFocus  className={classes.inputName}/>
+                         onBlur={onBlurHandler} autoFocus  className={classes.inputName} onKeyDown={onKeyDownHandler}/>
                 : <span style={{color: 'blue'}} onDoubleClick={() => {setMode(true)}}>{title}</span>}
             {error && <div className={classes.error}>{error}</div>}
             {/* <div className={classes.inputClick}>Кликни дважды для изменения названия</div> */}

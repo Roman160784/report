@@ -100,9 +100,9 @@ export const Ohmetres = () => {
             <br />
             <br />
             <br />
-            <br />
-            <div><AmprOhmStandardsInput setDataForAmperOhm={addOhmetr} /> <span>введите заводской № СИ</span></div>
-            <br />
+            
+           
+            
             <div>
                 <table border={1} >
                     <tr>
@@ -129,6 +129,9 @@ export const Ohmetres = () => {
                     }
                 </table>
             </div>
+            <br />
+            <div><AmprOhmStandardsInput setDataForAmperOhm={addOhmetr} /> <span>введите заводской № СИ</span></div>
+            <br />
             <br />
             <div>
                 Государственный поверитель ______________________ <EditableSpan title={headerData.user} changeTitle={userNameHandler} />

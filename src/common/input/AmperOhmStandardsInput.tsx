@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
 
 export type AmprOhmStandardsInputType = {
     setDataForAmperOhm: (data: string) => void
@@ -29,9 +29,16 @@ export const AmprOhmStandardsInput = ({setDataForAmperOhm, ...props}: AmprOhmSta
         setValue('')
     }
 
+    const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter') {
+            addDataHandler()
+            setValue('')
+        }
+    }
+
     return (
         <>
-        <input value={value} type="text" onChange={onChangeHandler} onBlur={onBlurHandler} />
+        <input value={value} type="text" onChange={onChangeHandler} onBlur={onBlurHandler} onKeyDown={onKeyDownHandler}/>
             {error && <div style={{ color: 'red' }}>{error}</div>}
         </>
     )
