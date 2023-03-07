@@ -16,7 +16,7 @@ const initialStateHeader: HeaderReducerType = {
     custumer: 'Гомельский ЦСМС',
     reportNumber: '1111',
     receipt: '123',
-    date: '11.11.2021',
+    date: '11.04.2023',
     voltage: '228.0',
     hz: '50',
     temperature: '20.4',

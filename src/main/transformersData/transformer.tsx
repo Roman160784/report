@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Button } from '../../common/button';
 import { EditableSpan } from '../../common/input/editableSpan';
+import { EditableSpanForTransformersNumber } from '../../common/input/editableSpanForTransformerNumber';
 import { EditableSpanNumbers } from '../../common/input/editableSpanNumbers';
 import { chengeClassTAC, chengeCoafficientAC, chengeInfelicityAC, chengeLoadAC, chengeStigmalAC, chengeTypeAC, remuveTransformerAC, setNumberAC, transformerType, visualAC } from '../../redux/ReportReducer';
 import { RootReducerType } from '../../redux/store';
@@ -119,7 +120,7 @@ export const Transformer = () => {
                             <td>{i+1}</td>
 
                             <td><EditableSpan title={tr.type} changeTitle={(typeTr) => { typeHandler(tr.id, typeTr) }} /></td>
-                            <td><EditableSpan title={tr.number} changeTitle={(serialNumber) => { serialNumberHandler(tr.id, serialNumber) }} /></td>
+                            <td><EditableSpanForTransformersNumber title={tr.number} changeTitle={(serialNumber) => { serialNumberHandler(tr.id, serialNumber) }} /></td>
                             <td><EditableSpan title={tr.current} changeTitle={(coefficient) => { coefficientHandler(tr.id, coefficient) }} /></td>
                             <td><EditableSpan title={tr.class} changeTitle={(clas) => { clasTHandler(tr.id, clas) }} /></td>
                             <td><EditableSpan title={tr.load} changeTitle={(load) => { loadHandler(tr.id, load) }} /></td>
