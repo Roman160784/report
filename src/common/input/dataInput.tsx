@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
+import { random } from '../../utils/randomArr';
 
 export type DataInputPropsType = {
     setData: (data: number[]) => void
@@ -8,19 +9,21 @@ export type DataInputPropsType = {
 export const DataInput = ({ setData, ...props }: DataInputPropsType) => {
 
 
-    const [value, setValue] = useState('')
+    let [value, setValue] = useState('')
 
     const [error, setError] = useState<string | null>(null)
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
-        setError(null)
     }
 
     const addDataHandler = () => {
-        if (value.trim() !== '' && !(value.match(/[a-z]/) || value.match(/[A-Z]/) || value.match(/[А-Я]/) || value.match(/[а-я]/))) {
+        if(value === '/') {
+            value = random()
+            setData(value.split(' ').map(e => +e));    
+        } else if (value.trim() !== '' && !(value.match(/[a-z]/) || value.match(/[A-Z]/) || value.match(/[А-Я]/) || value.match(/[а-я]/))) {
             setData(value.replaceAll("\t"," ").replaceAll(',', '.').split(' ').map(e => Number(e)))
-        } else {
+        }  else {
             setError('Не верные данные')
         }
     }
